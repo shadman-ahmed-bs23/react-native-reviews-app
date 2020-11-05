@@ -1,13 +1,14 @@
 import React, { useState } from 'react'; 
-import { View, Text, StyleSheet, FlatList, TouchableOpacity, Button } from 'react-native'; 
+import { View, Text, StyleSheet, FlatList, Modal, TouchableOpacity, Button } from 'react-native'; 
 import uuid from 'uuid-random'; 
 
 
 const Home = ({ navigation }) => {
 
+  const [modalOpen, setModalOpen] = useState(false); 
   const [reviews, setReviews] = useState([
     {key: uuid(), title: 'F.R.I.E.N.D.S', rating: 5, body: 'Sitcom series'}, 
-    {key: uuid(), title: 'The Big Bang Theory', rating: 5, body: 'Sitcom Series'},
+    {key: uuid(), title: 'The Big Bang Theory', rating: 3, body: 'Sitcom Series'},
   ]); 
 
   const reviewDetailsHandler = () => {
@@ -16,6 +17,12 @@ const Home = ({ navigation }) => {
 
   return (
     <View style={styles.container}> 
+
+      <Modal visible={modalOpen}>
+        <Text>Hello from the modal!</Text>
+      </Modal>
+
+      
       <FlatList 
         data={reviews}
         renderItem={({ item }) => (
@@ -55,6 +62,7 @@ const styles = StyleSheet.create({
   },  
   titleText: {
     fontSize: 20,
+    fontWeight: 'bold',
   },
 }); 
 

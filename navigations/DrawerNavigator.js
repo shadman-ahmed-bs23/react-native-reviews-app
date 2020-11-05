@@ -2,18 +2,23 @@ import React from "react";
 
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import StackNavigator from "./StackNavigator";
-
-import Home from '../screens/Home';
-import ReviewDetails from '../screens/ReviewDetails';
-import About from '../screens/About';
+import Header from '../shared/header';
+import HomeStackScreen from './HomeStackScreen';
+import SettingsStackScreen from "./SettingsStackScreen";
 
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigator = () => {
   return (
     <Drawer.Navigator>
-      <Drawer.Screen name="Home" component={Home} />
-      <Drawer.Screen name="About" component={About} />
+      <Drawer.Screen name="Home" component={HomeStackScreen} />
+      <Drawer.Screen 
+        name="About" 
+        component={SettingsStackScreen} 
+        options={{
+          headerTitle: () => <Header />,
+        }}
+      />
     </Drawer.Navigator>
   );
 }

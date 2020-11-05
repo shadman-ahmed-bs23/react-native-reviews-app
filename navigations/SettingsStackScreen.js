@@ -3,10 +3,11 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import About from '../screens/About'; 
 import Settings from '../screens/Settings'; 
+import Header from '../shared/header';
 
 const SettingsStack = createStackNavigator(); 
 
-const SettingsStackScreen = () => {
+const SettingsStackScreen = ({ navigation }) => {
   return (
     <SettingsStack.Navigator 
       screenOptions={{
@@ -20,8 +21,17 @@ const SettingsStackScreen = () => {
         },
       }}
     >
-      <SettingsStack.Screen name="Settings" component={Settings} />
-      <SettingsStack.Screen name="About" component={About} />
+      <SettingsStack.Screen 
+        name="Settings" 
+        component={Settings} 
+        options={{
+          headerTitle: () => <Header navigation={navigation} title="Settings" />, 
+        }}
+      />
+      <SettingsStack.Screen 
+        name="About" 
+        component={About} 
+      />
     </SettingsStack.Navigator>
   )
 }

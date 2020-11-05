@@ -3,10 +3,11 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import Home from '../screens/Home'; 
 import ReviewDetails from '../screens/ReviewDetails';
+import Header from '../shared/header';
 
 const HomeStack = createStackNavigator(); 
 
-const HomeStackScreen = () => {
+const HomeStackScreen = ({ navigation }) => {
   return (
     <HomeStack.Navigator 
       screenOptions={{
@@ -16,12 +17,23 @@ const HomeStackScreen = () => {
         headerTintColor: '#fff',
         headerTitleStyle: {
           fontWeight: 'bold',
-          alignSelf: 'center',
         },
       }}
     >
-      <HomeStack.Screen name="Home" component={Home} />
-      <HomeStack.Screen name="ReviewDetails" component={ReviewDetails} />
+      <HomeStack.Screen 
+        name="Home" 
+        component={Home} 
+        options={{
+          headerTitle: () => <Header navigation={navigation} title="Series Review" />, 
+          }}
+        />
+      <HomeStack.Screen 
+        name="ReviewDetails" 
+        component={ReviewDetails} 
+        options={{
+          title: "Review Details"
+        }}
+      />
     </HomeStack.Navigator>
   )
 }
